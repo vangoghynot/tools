@@ -1,0 +1,16 @@
+--------------------------------
+2026.3.30 - 1.0.1.6
+--------------------------------
+Features:
+-Add 'BIOS' view for ACPI Tables, SMBIOS, PCI Devices, UEFI Variables, OS Info, and Boot Performance metrics in OS Information
+-Add 'UEFI Var' view for UEFI variables read in OS
+  Export 'UEFI variable list' tree as (TXT, HTML, JSON, Markdown)
+  Friendly decode for known variables (SecureBoot, BootOrder, Boot####, etc.)
+  ASN1 Decode for Secure Boot certificate variables (PK, KEK, db, dbx)
+-Add 'USB Commander' for USB control transfers via WinUSB API
+-Add Raw Data hex dump tree nodes in Disk Info
+  Physical disks: MBR, GPT Header, Backup GPT, GPT Partition Entries
+  Logical volumes: VBR (Volume Boot Record) via live read
+
+Improvements:
+-Fix UEFI variable name list (ErrOut, ErrOutDev, db/dbx/dbt/devAuthBoot) per Uefi 2.11 specification update
