@@ -1,0 +1,147 @@
+--------------------------------
+2026.4.5 - 1.0.1.12
+--------------------------------
+Improvements:
+-Standardize export data function cross all viewers.
+
+--------------------------------
+2026.4.5 - 1.0.1.10
+--------------------------------
+Features:
+-Add Remote UEFI Variable Compare
+
+--------------------------------
+2026.4.4 - 1.0.1.9
+--------------------------------
+Features:
+-Add TCP/IP Transport
+  Client mode: connect to remote PLF server for debug log streaming
+  Server mode: listen for incoming PLF client connections
+
+--------------------------------
+2026.4.3 - 1.0.1.8
+--------------------------------
+Features:
+-Add ACPI Table Viewer.
+  ACPI table content decode.
+  AML-to-ASL disassembler for DSDT/SSDT tables
+  Add multi-format save (TXT, HTML, JSON) with Save/Save All for single and multiple acpi tables save
+
+--------------------------------
+2026.4.1 - 1.0.1.7
+--------------------------------
+Features:
+-Complete Security Toolkit with 5 functional tabs
+  Key: RSA/ECDSA/AES/TripleDES key generation, import, export (XML/PEM/Base64/Hex)
+  Hash: MD5/SHA-1/SHA-256/SHA-384/SHA-512 with text/file input
+  Cipher: AES-256/128-CBC, TripleDES-CBC, RSA-OAEP encrypt/decrypt
+  Signing: RSA+SHA, ECDSA+SHA, HMAC sign and verify
+  Certificate: X.509 cert viewer with full chain validation
+  Tools: Base64, password generator, PEM/DER converter, file checksum
+
+--------------------------------
+2026.3.30 - 1.0.1.6
+--------------------------------
+Features:
+-Add 'BIOS' view for ACPI Tables, SMBIOS, PCI Devices, UEFI Variables, OS Info, and Boot Performance metrics in OS Information
+-Add 'UEFI Var' view for UEFI variables read in OS
+  Export 'UEFI variable list' tree as (TXT, HTML, JSON, Markdown)
+  Friendly decode for known variables (SecureBoot, BootOrder, Boot####, etc.)
+  ASN1 Decode for Secure Boot certificate variables (PK, KEK, db, dbx)
+-Add 'USB Commander' for USB control transfers via WinUSB API
+-Add Raw Data hex dump tree nodes in Disk Info
+  Physical disks: MBR, GPT Header, Backup GPT, GPT Partition Entries
+  Logical volumes: VBR (Volume Boot Record) via live read
+
+Improvements:
+-Fix UEFI variable name list (ErrOut, ErrOutDev, db/dbx/dbt/devAuthBoot) per Uefi 2.11 specification update
+
+--------------------------------
+2025.9.10 - 1.0.1.5
+--------------------------------
+Support Serial Port speed up to 8M bps.
+
+--------------------------------
+2025.5.17 - 1.0.1.4
+--------------------------------
+-Rebuild to include latest .net framework support.
+
+--------------------------------
+2021.3.13 - 1.0.1.3
+--------------------------------
+Features:
+-Add GPT partition entries details in disk dump
+
+
+Issues Fix:
+-Disk dump in Windows 10 causes exception
+-USB View doesn't work for some platforms
+-ACPI Table dump sometimes failed
+
+--------------------------------
+2020.7.19 - 1.0.1.2
+--------------------------------
+-Add Command Line option -noerrpause
+  "No Error Pause" option is added 
+
+-Add Serial Port ReadTimeOut/WriteTimeout Parameter
+  Add Serial Port ReadTimeOut/WriteTimeOut setting in Configuration
+
+-Uefi Variable Dump
+  Add Hex view title to link to the variable name
+
+-Acpi Table Dump
+  Add hex data dump
+
+--------------------------------
+2020.6.26 - 1.0.1.1
+--------------------------------
+-Add UEFI Variable Dump
+   -Need Administrator right!!!
+   -Add Read Variable UI
+
+--------------------------------
+2020.5.14 - 1.0.1.0
+--------------------------------
+-Remove the app administrator right requirment
+-SUT Control improvement
+  -'Config' screen includes complete SUT control button definition and actions.
+  -Invalid web request error display. 
+-Console Window (VT100/ANSI)
+  -Add Menu in FormConsole - 'Save ScreenAs'
+  -Backspace key bug fixed
+  -char background/foreground color bug fixed
+
+--------------------------------
+1.0.0.42
+--------------------------------
+1. DiskInfo
+   -Show MBR information - bootable/nonbootable.
+   -Show OS name in OsType field.
+
+2. Add Command Line Mode
+   -Arguments
+     -cli                   Command Line Mode
+	 -com [COM Settings]    COM port settings
+	 -file [FileName]       Logs will be save to this file
+	 -fchk [FileName]       The existence of this file will terminate the log capture  
+	 Example:
+	   plf -cli -com COM4:115200:None:8:ONE:None -file d:\mylog.txt -fchk stop.txt
+
+3. Add SUT Control 
+   Add "Sut Control" field in Main Window.
+   The action string can be either web URL or executable file. Set the action string in "Option" window.
+   Below are the samples of the action string:
+      http://yourhost-ip/gpio/on/
+      d:\sut\AcPowerOn.bat      
+      d:\sut\PressPowerButton.exe
+
+4. Console Window
+   Add "Backspace" key process.
+
+
+---------------
+1.0.0.36
+----------------
+-Add shift key support in remote console screen.
+-Add Disk Information dump.

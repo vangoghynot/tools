@@ -1,5 +1,33 @@
-Visit Site https://ubios.blogspot.com/  to get all versions
+Visit https://ubios.blogspot.com/ to see more details.
 
+--------------------------------
+# v1.0.1.12 (2026.4.5)
+--------------------------------
+Improvements:
+-Standardize export data function cross all viewers.
+
+--------------------------------
+# v1.0.1.10 (2026.4.5)
+--------------------------------
+Features:
+-Add Remote UEFI Variable Compare
+
+--------------------------------
+# v1.0.1.9 (2026.4.4)
+--------------------------------
+Features:
+-Add TCP/IP Transport
+  Client mode: connect to remote PLF server for debug log streaming
+  Server mode: listen for incoming PLF client connections
+
+--------------------------------
+# v1.0.1.8 (2026.4.3)
+--------------------------------
+Features:
+-Add ACPI Table Viewer.
+  ACPI table content decode.
+  AML-to-ASL disassembler for DSDT/SSDT tables
+  Add multi-format save (TXT, HTML, JSON) with Save/Save All for single and multiple acpi tables save
 
 --------------------------------
 # v1.0.1.7 (2026.4.1)
