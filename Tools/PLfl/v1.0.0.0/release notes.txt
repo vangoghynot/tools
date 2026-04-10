@@ -1,0 +1,16 @@
+--------------------------------
+2026.4.8 - v1.0.0.0
+--------------------------------
+Features:
+-Initial release of PLFL (Project Lambda for Firmware - Linux)
+-UEFI Variable viewer
+-ACPI Table viewer
+-USB Topology viewer
+-Disk Information viewer (MBR/GPT)
+-BIOS Information (SMBIOS + ACPI + PCI + UEFI combined view)
+-TCPIP/DTP client/server for remote debugging
+-BMC/IPMI information via ipmitool
+-Linux system information
+-SMBIOS/DMI structure parser
+-PCI device viewer
+-Export to TXT, HTML, JSON, Markdown

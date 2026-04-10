@@ -1,6 +1,15 @@
 Visit https://ubios.blogspot.com/ to see more details.
 
 --------------------------------
+# v1.0.1.13 (2026.4.6)
+--------------------------------
+Few improvements and bug fixes.
+
+Features: Firmware Commander (Trial version)  
+- Local and Remote File Manager along with Firmware, Hardware, and OS data viewer
+(Raise request to unlock this feature)
+
+--------------------------------
 # v1.0.1.12 (2026.4.5)
 --------------------------------
 Improvements:
