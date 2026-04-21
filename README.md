@@ -3,7 +3,7 @@
   - [Tools](#tools)
     - [---------- PL for UEFI (PLe) ----------](#-----------pl-for-uefi-ple-----------)
       - [Overview](#overview)
-      - [Latest Version: **v0.9.7** ](#latest-version-v097-)
+      - [Latest Version: **1.0.0.0** ](#latest-version-1000-)
       - [OS: **UEFI (x64/Aarch64/RiscV)**](#os-uefi-x64aarch64riscv)
       - [Features](#features)
     - [---------- PL ----------](#-----------pl-----------)
@@ -13,11 +13,12 @@
       - [Features](#features-1)
     - [---------- PL for Firmware (PLf) ----------](#-----------pl-for-firmware-plf-----------)
       - [Overview](#overview-2)
-      - [Latest Version: **1.0.1.13**](#latest-version-10113)
+      - [Latest Version: **2.0.0.0**](#latest-version-2000)
       - [OS: **Windows**](#os-windows)
       - [Features](#features-2)
       - [Local/Remote Firmware/Hardware/OS Data Viewer](#localremote-firmwarehardwareos-data-viewer)
       - [Remote Platform Control](#remote-platform-control)
+      - [Test Features](#test-features)
     - [---------- PL for Firmware (Linux) ----------](#-----------pl-for-firmware-linux-----------)
       - [Overview](#overview-3)
       - [Latest Version: **1.0.0.0**](#latest-version-1000)
@@ -39,6 +40,7 @@ Visit https://ubios.blogspot.com/ to see more details.
 
 ![img](ple.png)
 ![img](pl.jpg)
+![img](plf_v2.png)
 ![img](plf.gif)
 ![img](plfl.png)
 
@@ -50,7 +52,7 @@ https://github.com/vangoghynot/tools/tree/master/Tools/PLe<br>
 #### Overview
 PLe (Project Lambda for UEFI) is an UEFI shell application for firmware (BIOS/BMC...etc) debugging and system inspection. It is the UEFI port of PL (Project Lambda).
 
-#### Latest Version: **v0.9.7** <br>
+#### Latest Version: **1.0.0.0** <br>
 #### OS: **UEFI (x64/Aarch64/RiscV)**
 #### Features
 - **1.	PCI/PCI Express Register and Data Decode**
@@ -101,7 +103,7 @@ https://github.com/vangoghynot/tools/tree/master/Tools/PLf)<br>
 #### Overview
 PLf (Project Lambda for Firmware) is a Windows GUI application for firmware (BIOS/BMC...etc) debugging and system inspection. 
 
-#### Latest Version: **1.0.1.13**
+#### Latest Version: **2.0.0.0**
 
 #### OS: **Windows**
 
@@ -174,6 +176,13 @@ PLf (Project Lambda for Firmware) is a Windows GUI application for firmware (BIO
   - Support Web http/https request or windows exe/bat to control the M/B 
   - Support 'Level' or Pulse control<br> 
   - Capable to control the M/B AC power or Power Button<br>
+
+#### Test Features
+
+- Firmware Image Explorer <br>
+  Supports firmware parsing for BIOS, UEFI, BMC, MCU formats with tree view
+- Firmware Commander <br>
+  Local and Remote File Manager along with Firmware, Hardware, and OS data viewer
 
 
 ### ---------- PL for Firmware (Linux) ----------

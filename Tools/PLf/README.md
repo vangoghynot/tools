@@ -1,6 +1,30 @@
 Visit https://ubios.blogspot.com/ to see more details.
 
 --------------------------------
+# v2.0.0.1 (2026.4.21)
+--------------------------------
+Features: 
+-Multi-Session Support
+  Create and manage multiple concurrent debug sessions
+  Each session has its own tab, message view, and transport connection
+
+-Multi-Interface Connection Redesign
+  Redesigned connection settings for Serial, TCP/IP.
+  Per-session interface configuration in session create dialog.
+
+-Data Client/Server
+  DTP protocol over interface for transfer file and data, like acpi, uefi variables.
+  Shared interface between DTP and debug log sessions.
+
+- Firmware Explorer (Trial version)  
+  - Supports firmware parsing for BIOS, UEFI, BMC, MCU formats with tree view
+
+- Firmware Commander (Trial version)  
+  - Local and Remote File Manager along with Firmware, Hardware, and OS data viewer
+
+(Raise request to unlock this feature)
+
+--------------------------------
 # v1.0.1.13 (2026.4.6)
 --------------------------------
 Few improvements and bug fixes.
