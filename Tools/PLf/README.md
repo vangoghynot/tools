@@ -1,6 +1,25 @@
 Visit https://ubios.blogspot.com/ to see more details.
 
 --------------------------------
+# v2.0.1.0 (2026.4.26)
+--------------------------------
+Features:
+-AI Chat: AI model based data analysis
+
+--------------------------------
+# v2.0.0.2 (2026.4.24)
+--------------------------------
+Features:
+-Firmware Explorer
+  Decode As NVRAM context menu for on-demand NVRAM variable parsing
+
+-Standard GUID Database
+  Built-in StdGuid.json with UEFI, PI, ACPI, SMBIOS, TCG standard GUIDs
+
+-Option UI Enhancements
+  Add GUID Map configuration settings page
+
+--------------------------------
 # v2.0.0.1 (2026.4.21)
 --------------------------------
 Features: 

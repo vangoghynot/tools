@@ -13,11 +13,52 @@
       - [Features](#features-1)
     - [---------- PL for Firmware (PLf) ----------](#-----------pl-for-firmware-plf-----------)
       - [Overview](#overview-2)
-      - [Latest Version: **2.0.0.0**](#latest-version-2000)
+      - [Latest Version: **2.0.1.0**](#latest-version-2010)
       - [OS: **Windows**](#os-windows)
       - [Features](#features-2)
-      - [Local/Remote Firmware/Hardware/OS Data Viewer](#localremote-firmwarehardwareos-data-viewer)
-      - [Remote Platform Control](#remote-platform-control)
+        - [1. Smart Debug Log Information (Main Window)](#1-smart-debug-log-information-main-window)
+        - [2. Multi-Session Management](#2-multi-session-management)
+          - [Creating a Session](#creating-a-session)
+          - [Session Types](#session-types)
+          - [Session Tabs](#session-tabs)
+          - [Connect / Disconnect](#connect--disconnect)
+          - [DTP Serial Transport](#dtp-serial-transport)
+      - [Main Button Panel](#main-button-panel)
+        - [1. UEFI/BIOS Information Viewer](#1-uefibios-information-viewer)
+        - [2. UEFI Variable Viewer](#2-uefi-variable-viewer)
+        - [3. ACPI Viewer](#3-acpi-viewer)
+        - [4. USB](#4-usb)
+          - [USB Topology Viewer](#usb-topology-viewer)
+          - [USB Commander](#usb-commander)
+        - [5. Disk](#5-disk)
+        - [6. Security / Cryptography Tools](#6-security--cryptography-tools)
+          - [Key Management](#key-management)
+          - [Hash](#hash)
+          - [Cipher](#cipher)
+          - [Digital Signing](#digital-signing)
+          - [Certificate](#certificate)
+        - [7. Firmware Commander (with File Manager)](#7-firmware-commander-with-file-manager)
+          - [Layout](#layout)
+          - [Container Features](#container-features)
+          - [Navigation](#navigation)
+          - [Menus](#menus)
+        - [8. Configuration / Options](#8-configuration--options)
+          - [Serial Port Settings](#serial-port-settings)
+          - [TCP/IP (DTP) Settings](#tcpip-dtp-settings)
+          - [Color Settings](#color-settings)
+          - [General Settings](#general-settings)
+          - [Log Options](#log-options)
+          - [GUID Path Settings](#guid-path-settings)
+          - [SUT Control Configuration](#sut-control-configuration)
+          - [Hotkey Configuration](#hotkey-configuration)
+      - [Other GUI Functions](#other-gui-functions)
+        - [1. SUT Control (System Under Test / Motherboard Control)](#1-sut-control-system-under-test--motherboard-control)
+        - [2. Additional Features](#2-additional-features)
+      - [Tool Bar Functions](#tool-bar-functions)
+        - [1. AI Chat](#1-ai-chat)
+        - [2. Console Redirection](#2-console-redirection)
+      - [Command Line Interface](#command-line-interface)
+        - [1. Command Line Interface (CLI Mode)](#1-command-line-interface-cli-mode)
       - [Test Features](#test-features)
     - [---------- PL for Firmware (Linux) ----------](#-----------pl-for-firmware-linux-----------)
       - [Overview](#overview-3)
@@ -103,79 +144,342 @@ https://github.com/vangoghynot/tools/tree/master/Tools/PLf)<br>
 #### Overview
 PLf (Project Lambda for Firmware) is a Windows GUI application for firmware (BIOS/BMC...etc) debugging and system inspection. 
 
-#### Latest Version: **2.0.0.0**
+#### Latest Version: **2.0.1.0**
 
 #### OS: **Windows**
 
 #### Features
-- **1. UEFI/BIOS Smart Debug Information**
-  - Error/Checkpoint/Guid Message clarification and color highlight<br> 
-  - User defined message filter and color highight (Support two uder defined sets)<br> 
-  - Quick message search and locate debug message<br> 
-  - Save debug message on the fly (save to file)<br> 
-  - Load debug message and analysis<br>
-  
-- **2. Addon Debug Message Functions**<br>
-  - Calculate the timeing between two marked debug messages, can be used to measure and tune the BIOS POST time.<br> 
-  (Click the 'Time' button on tool bar to open the 'Time' Windows, then use 'SPACE' key to mark the message.<br> 
-  - GUID and Meaniningful name translation <br> 
-    Lookup the BIOS source code at startup. Once the GUID is displayed in the debug message, convert the GUID to the driver/protocol name of the GUID.<br>
-   (Need to set the 'GUID File Path' in the "Config" window to point to the UEFI/BIOS source code)<br>
-   (Click the 'Decode Messages' button in the tool bar to enable/disable the trsnslation)<br>
 
-#### Local/Remote Firmware/Hardware/OS Data Viewer
-- **1. BIOS**<br>
-  BIOS acpi/smbios/pci/uefi variables/OS data viewer.<br>
+##### 1. Smart Debug Log Information (Main Window)
 
-- **2. UEFI Variables<br>**  
-  - **Need Administrator Right !!!** <br>
-  - Read UEFI Variable in Windows<br>
-  - UEFI Variable Commander to access specific variable
+- **Real-time serial debug message capture** via COM, TCP/IP port
+- **Message classification** with columns: Class, Timestamp, Message
+- **Color-coded syntax highlighting** for message types:
+  - Normal, Error (red), Checkpoint, GUID, User-defined 1 & 2
+  - Configurable colors for each category
+- **Message filtering** - show/hide by type: All, Messages, Errors, Checkpoints, GUIDs, User1, User2
+- **Navigation buttons** - jump to prev/next: User message, Checkpoint, Error, Search match
+- **Pattern search** (F3/F4 forward/backward)
+- **GUID-to-name translation**
+  - Parses UEFI/BIOS source code to build GUID to driver/protocol name map
+  - Real-time decode of GUIDs in messages
+  - Set 'GUID Map' in Config window to point to UEFI/BIOS source code
+  - Click **'Decode Messages'** button to enable/disable translation
+- **GUID map viewer** - browsable list of all parsed GUIDs
+- **GUID map export** - generate GuidMap.txt and GuidM.c files
+- **Message timing measurement** - mark two messages with SPACE to calculate duration between them (for POST time measurement)
+  - Click **'Time'** button on toolbar to open Time window
+- **Save log** to file on the fly (Set Log button)
+- **Save current log as file** (SaveAs)
+- **Load previously saved log** for offline analysis
+- **Clear log window**
+- **Send commands** to target via command box (with hex command mode)
+- **Trailing character options**: None, CR, LF, CRLF, User-defined
+- **ESC sequence support** in command box
+- **Hex dump mode** for raw data
+- **Display control characters** option
+- **Monospaced font** toggle
+- **Keep window always-on-top** option
 
-- **3. ACPI<br>**  
-  - Dump ACPI Tables<br> 
-  - Decompile SSDT/DSDT AML to ASL<br>
-- **4. USB<br>**  
-  - USB topology map<br> 
-  - Save the USB topology map to TXT or ASL file<br>
-  - Compare the USB topology map. Can be utilize to check if any USB device loss cross system boots. (support command line mode)<br> 
-  - ACPI ASL _UPC and _PLD generation for USB devices.<br>
-- **5. Disk<br>**  
-  - **Need Administrator Right !!!** <br> 
-  - View GPT/MBR information<br> 
-  - Check disk boot capability.<br>
-- **6. Security/Cryptograhy**<br>  
-  - Key Management
-    - **Generate keys**: RSA (1024/2048/3072/4096), ECDSA (P-256/P-384/P-521), AES (128/192/256), TripleDES
-    - **Export keys**: XML, Base64, PEM formats; private and public key export
-    - **Import keys** from file
-  
-  - Hash
-    - **Hash algorithms**: MD5, SHA-1, SHA-256, SHA-384, SHA-512
-    - Hash from text or file input
-  
-  - Cipher
-    - **Encrypt/Decrypt**: AES-256-CBC (password-based) and other modes
-    - File or text input
+##### 2. Multi-Session Management
 
-  - Digital Signing
-    - **Sign**: RSA + SHA-256 and other combinations
-    - **Verify** signatures
+PLF supports multiple concurrent debug sessions, each with its own transport connection, tab, and log view.
 
-  - Certificate
-    - **X.509 certificate** viewing and parsing<br>
-  
-- **7. Console Redirection<br>**  
-  - Click 'Terminal' button in the tool bar to open the console window.<br> 
-  - Support ANSI/VT100 (Similar to Putty/Teraterm)<br> 
-  - Capture screen to file.<br>
+###### Creating a Session
+- Right-click the **Sessions** tree in the left panel and select **New Session**
+- Configure session name, type (Debug Log / DTP Client / DTP Server), and interface (Serial / TCP/IP / MQTT)
+- Each session gets its own tab in the main log area
 
-#### Remote Platform Control
-- **1. SUT Control (Control M/B)<br>**  
-  - Need specific hardware<br> 
-  - Support Web http/https request or windows exe/bat to control the M/B 
-  - Support 'Level' or Pulse control<br> 
-  - Capable to control the M/B AC power or Power Button<br>
+###### Session Types
+| Type | Description |
+|------|-------------|
+| Debug Log | Passive serial debug log capture |
+| DTP Client | Connect to a remote DTP server for bidirectional communication |
+| DTP Server | Listen for incoming DTP client connections |
+
+###### Session Tabs
+- Each session has a dedicated tab with its own ListView
+- Received data is routed to the correct session tab regardless of which tab is selected
+- User commands typed in the command box are sent via the **active** (selected) session's transport
+- Command echo (when LocalEcho is enabled) appears in the active session's tab
+
+###### Connect / Disconnect
+- Right-click a session in the tree and select **Connect** or **Disconnect**
+- Sessions can be connected and disconnected independently
+- Session configuration is saved to `plf.ini` and restored on next launch
+
+###### DTP Serial Transport
+- DTP protocol over serial port with noise-tolerant frame scanning
+- Shared serial port support: DTP and debug log sessions can share the same COM port
+- Per-session transport ownership for simultaneous connections
+
+
+---
+
+#### Main Button Panel
+
+---
+
+##### 1. UEFI/BIOS Information Viewer
+
+- **File menu**: Export... (focused node), Export All... (entire tree) in TXT/HTML/JSON/Markdown
+- **View menu**: Tree, Decode, Hex panel toggles; Expand All, Collapse All, Refresh
+- **ACPI tables** - enumerate and display all system ACPI tables with raw hex data
+- **SMBIOS** - parse and display SMBIOS/DMI data
+- **PCI device enumeration** - list all PCI devices
+- **UEFI Variables** summary
+- **OS Information** display
+- Tree view with hex dump of selected node
+
+---
+
+##### 2. UEFI Variable Viewer
+
+- **File menu**: Export... (focused node), Export All... (entire tree) in TXT/HTML/JSON/Markdown
+- **View menu**: Command, Tree, DecodeView, Hex, Status panel toggles; Expand All, Collapse All, Refresh
+- **Enumerate UEFI variables** via Windows firmware API
+- **Display variable attributes** (NV, BT, RT, HR, AU, AT, AW, EA)
+- **ASN.1 decoding** support
+- **Hex viewer** for variable data
+- Privilege elevation for variable access
+- **Remote Compare** — compare local and remote UEFI variables over DTP:
+  - Check the **Remote** checkbox to enable remote access
+  - Click **Compare Remote** to request UEFI variables from a connected DTP server
+  - Remote variables are displayed in a side-by-side tree view (pink background)
+  - Each remote variable shows binary hex dump and friendly decode (Boot Order, Secure Boot, etc.)
+  - Requires an active DTP TCP/IP connection (client mode)
+
+---
+
+##### 3. ACPI Viewer
+
+- **File menu**: Export... (focused table), Export All... (all tables) in TXT/HTML/JSON/Markdown
+- **View menu**: Tool, Tree, Decode, Hex panel toggles; Expand All, Collapse All, Refresh
+- **Enumerate all ACPI tables** from Windows firmware
+- **Tree view** of tables with raw data
+- **Hex dump panel**
+
+---
+
+##### 4. USB
+
+###### USB Topology Viewer
+- **USB device tree** - full topology map of all USB devices
+- **File menu**: Export... (focused node), Export All... (entire tree) in TXT/HTML/JSON/Markdown
+- **View menu**: Tree, Info panel toggles; Expand All, Collapse All, Refresh
+- **Scan Hardware Change** - top-level menu bar button to rescan USB bus
+- **Save topology** to TXT or ASL file
+- **Compare topology** - detect USB device loss across reboots (supports command line mode)
+- **ACPI ASL _UPC/_PLD generation** for USB ports
+  - Connector type: Type-A, Mini-AB, ExpressCard, USB3 Type-A/B/Micro-B/Micro-AB/Power-B, Type-C variants, Proprietary
+  - PLD revision 1 and 2 support
+  - Panel position, color, visibility, shape, group, rotation, offset, etc.
+
+###### USB Commander
+- **Send USB control transfers** to any USB device via WinUSB
+- **Preset requests** for standard, HID, Mass Storage, CDC class commands
+- **Custom request builder** - direction, type, recipient, bRequest, wValue, wIndex, wLength
+- **Device selection** with driver info
+- **Request history**
+
+---
+
+##### 5. Disk
+
+- Requires Administrator privileges
+- **File menu**: Export... (focused node), Export All... (entire tree) in TXT/HTML/JSON/Markdown
+- **View menu**: Tree, Action panel toggles; Expand All, Collapse All, Refresh
+- **Disk/volume tree view** - enumerate all physical disks and logical volumes
+- **MBR partition table** display and hex dump
+- **GPT partition table** display (primary + backup)
+- **VBR (Volume Boot Record)** hex dump
+- **Raw LBA hex dump** (Boot Sector, GPT Header, GPT Entries)
+
+---
+
+##### 6. Security / Cryptography Tools
+
+###### Key Management
+- **Generate keys**: RSA (1024/2048/3072/4096), ECDSA (P-256/P-384/P-521), AES (128/192/256), TripleDES
+- **Export keys**: XML, Base64, PEM formats; private and public key export
+- **Import keys** from file
+
+###### Hash
+- **Hash algorithms**: MD5, SHA-1, SHA-256, SHA-384, SHA-512
+- Hash from text or file input
+
+###### Cipher
+- **Encrypt/Decrypt**: AES-256-CBC (password-based) and other modes
+- File or text input
+
+###### Digital Signing
+- **Sign**: RSA + SHA-256 and other combinations
+- **Verify** signatures
+
+###### Certificate
+- **X.509 certificate** viewing and parsing
+
+---
+
+##### 7. Firmware Commander (with File Manager)
+
+A multi-pane file manager inspired by Total Commander, accessible from the **FirmwareCommander** toolbar button on the main window.
+
+###### Layout
+- **1, 2, or 3 horizontal containers** — select via Option → Layout
+- Each container has its own tree view, file list, and URL bar
+- Resizable split panels between containers
+
+###### Container Features
+- **URL dropdown** — browse local drives, BIOS, UEFI Var, ACPI, USB, and remote drives (when connected via DTP)
+- **Tree view** — directory tree (toggle with **Tree** button)
+- **File list** — details view with Name, Size, Type, Date Modified columns and shell icons
+- **Status bar** — per-container status (toggle with **Status** button)
+- **Remote checkbox** — switch between local and remote file browsing
+
+###### Navigation
+- **Enter / Double-click** — enter folder or open item
+- **Backspace** — go up one directory level
+- **URL bar selection** — navigate to drive or data view
+
+###### Menus
+| Menu | Actions |
+|------|---------|
+| File | New File, New Folder, Open, Save, Save As, Save All, Export |
+| Operation | Copy, Edit |
+| View | Menu, ToolBar, Status, Sort By |
+| Goto | UEFI, ACPI, Remote |
+| Option → Layout | 1, 2, or 3 containers |
+| Option → Status | Date/Time, Remote Status |
+
+---
+
+##### 8. Configuration / Options
+
+###### Serial Port Settings
+- COM port selection
+- Baud rates: 100 to 8,000,000
+- Data bits (5-8), Parity, Stop bits, Handshake
+- Read/Write timeout
+- Interface type: Serial, USB, TCP/IP
+- Connect on startup option
+
+###### TCP/IP (DTP) Settings
+- **Client mode**: connect to a remote DTP server by host and port
+- **Server mode**: listen on a local port for incoming DTP client connections
+- Host address and port number configuration
+- Server Mode checkbox with separate Listen Port setting
+- DTP protocol: 32-byte frame header, CRC32 validation, JSON payloads
+- Bidirectional log streaming and command transfer
+- User commands sent as UserCommand (0x22) frames, displayed with [Remote] prefix
+- Loaded log files automatically forwarded to connected clients
+- Connection diagnostics logged to plf_dtp.log
+
+###### Color Settings
+- Configurable colors for background, received text, command, error, checkpoint, GUID, user1, user2
+- Per-category color enable/disable
+- User-defined filter text for User1/User2
+
+###### General Settings
+- Local Echo — echo typed commands to the log window
+
+###### Log Options
+- Display control characters, hex dump, keep-in-front, monospaced font
+- Confirm on clear, ESC sequences in command box
+- Timestamp add/save options
+- Trailing character for commands
+
+###### GUID Path Settings
+- UEFI/BIOS source code path for GUID parsing
+- Parse on startup option
+
+###### SUT Control Configuration
+- Control type, button text, level text for both channels
+
+###### Hotkey Configuration
+- Configurable keyboard shortcuts for all major actions
+
+-----
+
+#### Other GUI Functions
+
+-----
+
+##### 1. SUT Control (System Under Test / Motherboard Control)
+
+- Requires specific hardware
+- **Two configurable control channels** (Control 1 and Control 2)
+- **Control modes:**
+  - Level (high/low) - sustained signal
+  - Pulse - momentary trigger
+- **Control interfaces:**
+  - Web HTTP/HTTPS request
+  - Windows EXE/BAT execution
+- **Use cases:** AC power control, power button simulation
+- Configurable button labels
+
+---
+
+##### 2. Additional Features
+
+- **Message Time Window** - stopwatch-style timing with timestamp pairs and duration calculation
+- **Log Window** - secondary log view with class/subclass/timestamp columns
+- **Reset Window** - reset window layout
+- **Init Token** - send initialization key sequence
+- **INI file** settings persistence
+- **System logger** - timestamped application event logging
+
+---
+
+#### Tool Bar Functions
+
+---
+
+##### 1. AI Chat
+
+- **OpenAI-compatible API** chat interface
+- **Configurable endpoint** (default: localhost:11434 for Ollama)
+- **Model selection** (default: llama3.2)
+- **API key** support
+- **Chat history** with role-based messages
+- Color-coded chat (blue=user, green=AI, red=error)
+
+---
+
+##### 2. Console Redirection
+
+- Click 'Terminal' button in toolbar to open Console window
+- **ANSI/VT100 terminal emulator** (similar to PuTTY/TeraTerm)
+- **80x25 character screen** with full ANSI escape sequence decoding
+- **Bidirectional serial communication** - keyboard input sent to target
+- **Screen capture** to file
+- **Configurable encoding** (IBM437 default)
+
+---
+
+#### Command Line Interface
+
+---
+
+##### 1. Command Line Interface (CLI Mode)
+
+```
+PLF.exe -cli -com COMx:BaudRate:Parity:Data:Stop:Handshake -file <path> [options]
+```
+
+| Option | Description |
+|--------|-------------|
+| -cli | Headless console mode for automated logging |
+| -com COMx:BaudRate:Parity:Data:Stop:Handshake | Serial port configuration |
+| -file <path> | Output log file |
+| -fchk <file> | Stop when sentinel file appears (automation trigger) |
+| -UsbTreeCheck | Compare USB topology against saved baseline |
+| -guidparser <path> / -guidp <path> | Parse GUID files from source |
+| -nosyslog | Disable system log |
+| -noerrpause | No pause on error |
+| -help | Print usage |
+
+---
 
 #### Test Features
 
