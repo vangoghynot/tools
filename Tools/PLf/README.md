@@ -1,6 +1,21 @@
 Visit https://ubios.blogspot.com/ to see more details.
 
 --------------------------------
+# v2.0.1.1 (2026.4.26)
+--------------------------------
+Features:
+-ACPI Viewer: Remote ACPI table decode view and AML decoder
+-ACPI Viewer: Export All now works for remote ACPI tables including AML/ASL generation for DSDT/SSDT
+-GUID Map: Standard GUID database now loads on startup
+
+Bug Fixes:
+-ACPI Viewer: Fixed crash when selecting remote ACPI root node
+-ACPI Viewer: Fixed Export All not working for remote tables
+-Fixed crash after config OK when no debug log session active
+-GUID Parser: Fixed crash parsing .inf files with whitespace around FILE_GUID values
+-GUID Parser: Fixed empty GuidFilePath being treated as valid path
+
+--------------------------------
 # v2.0.1.0 (2026.4.26)
 --------------------------------
 Features:

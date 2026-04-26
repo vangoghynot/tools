@@ -13,7 +13,7 @@
       - [Features](#features-1)
     - [---------- PL for Firmware (PLf) ----------](#-----------pl-for-firmware-plf-----------)
       - [Overview](#overview-2)
-      - [Latest Version: **2.0.1.0**](#latest-version-2010)
+      - [Latest Version: **2.0.1.1**](#latest-version-2011)
       - [OS: **Windows**](#os-windows)
       - [Features](#features-2)
         - [1. Smart Debug Log Information (Main Window)](#1-smart-debug-log-information-main-window)
@@ -144,7 +144,7 @@ https://github.com/vangoghynot/tools/tree/master/Tools/PLf)<br>
 #### Overview
 PLf (Project Lambda for Firmware) is a Windows GUI application for firmware (BIOS/BMC...etc) debugging and system inspection. 
 
-#### Latest Version: **2.0.1.0**
+#### Latest Version: **2.0.1.1**
 
 #### OS: **Windows**
 
